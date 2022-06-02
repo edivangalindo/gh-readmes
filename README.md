@@ -1,6 +1,10 @@
 # gh-readmes
 A tool to download readmes 📃
 
+Pre-requisites:
+
+* You need to config an env called GH_AUTH_TOKEN with your personal access token, to do the requests
+
 How to use:
 
 ```bash
@@ -13,7 +17,7 @@ After that, readmes from each of the projects will be downloaded in the **readme
 
 First, you'll need to [install go](https://golang.org/doc/install).
 
-Then run this command to download + compile travis-test:
+Then run this command to download + compile gh-readmes:
 ```
 go install github.com/edivangalindo/gh-readmes@latest
 ```
