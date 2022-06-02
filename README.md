@@ -10,6 +10,13 @@ How to use:
 ```bash
 cat repos.txt | gh-readmes
 ```
+If you need use this inside a toolchain, you can use the flag -v to print the content of readme.
+
+Eg:
+
+```bash
+cat repos.txt | gh-readmes -v | ag -i "[0-9a-zA-Z]{40}" -o --nofilename
+```
 
 After that, readmes from each of the projects will be downloaded in the **readmes** folder, which will be created in the same location as the tool's execution.
 
