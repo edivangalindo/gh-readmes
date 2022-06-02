@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"context"
 	"encoding/base64"
+	"flag"
 	"fmt"
 	"os"
 	"time"
@@ -13,6 +14,8 @@ import (
 )
 
 func main() {
+	verbose := flag.Bool("v", true, "show verbose output")
+
 	token := os.Getenv("GH_AUTH_TOKEN")
 
 	ctx := context.Background()
@@ -78,5 +81,9 @@ func main() {
 		}
 
 		SaveFile("readmes", owner+"-"+repo+".md", data)
+
+		if *verbose {
+			fmt.Println(string(data))
+		}
 	}
 }
