@@ -46,13 +46,19 @@ func main() {
 		if err != nil {
 			fmt.Println(err)
 
-			if resp.StatusCode == 404 {
-				continue
-			}
-
-			if resp.Remaining == 0 {
-				fmt.Printf("Rate limit exceeded, waitting for %+v minutes\n", resp.Rate.Reset.Sub(time.Now()).Minutes())
-				time.Sleep(resp.Rate.Reset.Sub(time.Now()))
+			if resp != nil {
+				if resp.StatusCode == 404 {
+					continue
+				}
+	
+				if resp.Remaining == 0 {
+					fmt.Printf("Rate limit exceeded, waitting for %+v minutes\n", resp.Rate.Reset.Sub(time.Now()).Minutes())
+					time.Sleep(resp.Rate.Reset.Sub(time.Now()))
+					continue
+				}
+			} else {
+				fmt.Println("It looks like we are dealing with a network error... let's wait for 1 minute and follow the flow with other repositories...")
+				time.Sleep(60 * time.Second)
 				continue
 			}
 		}
